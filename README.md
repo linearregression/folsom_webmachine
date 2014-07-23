@@ -60,6 +60,12 @@ This is an application that exposes folsom metrics via http using webmachine.
         It only runs the Query Erlang VM metrics, stats and information listed below automatically. 
         This is to show that you at least have a working setup.
 
+#### To Generaate an Erlang OTP Release
+        run ./rebar -v generate or Make release
+        If you want to package this as an Erlang OTP release application.
+        sanity_test.sh is also copied to the package bin.
+        All the release package configuration details in rel/reltool.config
+        Note there is no appup configuration and related logic, so no hot code swap at the momemt.
 
 #### api
 

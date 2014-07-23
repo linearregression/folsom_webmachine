@@ -55,6 +55,10 @@ This is an application that exposes folsom metrics via http using webmachine.
         =PROGRESS REPORT==== 23-Jul-2014::13:14:06 ===
                  application: folsom_webmachine
                   started_at: folsom_webmachine@developerVBox
+#### Sanity Test
+        run sanity_test.sh
+        It only runs the Query Erlang VM metrics, stats and information listed below automatically. 
+        This is to show that you at least have a working setup.
 
 
 #### api

@@ -26,15 +26,9 @@
 -export([start/0, stop/0]).
 
 start() ->
-    application:start(sasl),
-    ssl:start(),
-    inets:start(),
-    application:start(crypto),
-    application:start(inet),
-    application:start(mochiweb),
-    application:start(webmachine),
-    ok = application:start(folsom),
-    ok = application:start(folsom_webmachine).
+    folsom_webmachine_app:start_phase(webmachine, normal,[]),
+    folsom_webmachine_app:start_phase(folsom, normal,[]),
+    application:start(folsom_webmachine).
 
 stop()->
     application:stop(folsom_webmachine).

@@ -40,6 +40,7 @@ ct:
 
 compile: 
 	@$(REBAR) compile
+	cp -f sanity_test.sh rel/files
 
 app:
 	@$(REBAR) compile skip_deps=true

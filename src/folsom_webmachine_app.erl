@@ -26,14 +26,32 @@
 -behaviour(application).
 
 %% Application callbacks
--export([start/2, stop/1]).
+-export([start/0, start/2, stop/1]).
+-export([start_phase/3]).
 
 %% ===================================================================
 %% Application callbacks
 %% ===================================================================
 
+% For erl listener
+start()->
+    start([], []).
+
+% For boot
 start(_StartType, _StartArgs) ->
     folsom_webmachine_sup:start_link().
 
+start_phase(webmachine, _StartType, _PhaseArgs)->
+    application:start(sasl),
+    ssl:start(),
+    inets:start(),
+    application:start(crypto),
+    application:start(inet),
+    application:start(mochiweb),
+    application:start(webmachine);
+
+start_phase(folsom, _StartType, _PhaseArgs)->
+    application:start(folsom).
+    
 stop(_State) ->
     ok.

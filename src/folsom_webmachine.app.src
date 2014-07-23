@@ -3,15 +3,18 @@
   {description, "Webmachine frontend for folsom"},
   {vsn, git},
   {registered, [folsom_webmachine]},
+ % {included_applications, [webmachine]},
   {mod, {folsom_webmachine_app, []}},
   {applications, [
                   kernel,
                   stdlib,
+                  sasl,
                   crypto,
                   inets,
-                  mochiweb,
-                  webmachine,
                   folsom
                  ]},
-  {env, [{health, {erlang, node, []}}]}
+ % {start_phases, [{webmachine,[]}, {folsom,[]}]}, 
+  {env, [{health, {erlang, node, []}}]}  
  ]}.
+
+

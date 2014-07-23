@@ -1,12 +1,16 @@
 {application, folsom_webmachine,
  [
-  {description, ""},
+  {description, "Webmachine frontend for folsom"},
   {vsn, git},
-  {registered, []},
+  {registered, [folsom_webmachine]},
   {mod, {folsom_webmachine_app, []}},
   {applications, [
                   kernel,
                   stdlib,
+                  crypto,
+                  inets,
+                  mochiweb,
+                  webmachine,
                   folsom
                  ]},
   {env, [{health, {erlang, node, []}}]}

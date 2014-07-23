@@ -7,6 +7,55 @@ This is an application that exposes folsom metrics via http using webmachine.
 
         > folsom_webmachine_sup:start_link().
         > application:start(folsom).
+        
+        or just run start_dev.sh start_dev is a bit differnt from above method.
+        * This will automatically takes care of starting all the dependencies app for you. What is going during start up stage.
+        * It starts sasl so that the app is an erlang node being managed by Erlang SASL. Better progress report etc.
+        * the script gave the node a short name as folsom. You can change that to your liking.
+        
+        On a suucessful start, You will see something like the follow in shell (pay attention to the last few lines)
+        =PROGRESS REPORT==== 23-Jul-2014::13:14:06 ===
+          supervisor: {local,folsom_webmachine_sup}
+             started: [{pid,<0.96.0>},
+                       {name,webmachine_mochiweb},
+                       {mfargs,
+                           {webmachine_mochiweb,start,
+                               [[{ip,"127.0.0.1"},
+                                 {port,"5565"},
+                                 {log_dir,"priv/log"},
+                                 {dispatch,
+                                     [{["_system"],
+                                       folsom_webmachine_system_resource,[]},
+                                      {["_memory"],
+                                       folsom_webmachine_memory_resource,[]},
+                                      {["_statistics"],
+                                       folsom_webmachine_statistics_resource,
+                                       []},
+                                      {["_process"],
+                                       folsom_webmachine_process_resource,[]},
+                                      {["_port"],
+                                       folsom_webmachine_port_resource,[]},
+                                      {["_ping"],
+                                       folsom_webmachine_ping_resource,[]},
+                                      {["_health"],
+                                       folsom_webmachine_health_resource,[]},
+                                      {["_metrics"],
+                                       folsom_webmachine_metrics_resource,[]},
+                                      {["_metrics",id],
+                                       folsom_webmachine_metrics_resource,[]},
+                                      {["_ets"],
+                                       folsom_webmachine_ets_resource,[]},
+                                      {["_dets"],
+                                       folsom_webmachine_dets_resource,
+                                       []}]}]]}},
+                       {restart_type,permanent},
+                       {shutdown,5000},
+                       {child_type,worker}]
+                       
+        =PROGRESS REPORT==== 23-Jul-2014::13:14:06 ===
+                 application: folsom_webmachine
+                  started_at: folsom_webmachine@developerVBox
+
 
 #### api
 
@@ -55,3 +104,8 @@ Query Erlang VM information:
 
          $ curl http://localhost:5565/_memory
          {"total":11044608,"processes":3240936,"processes_used":3233888,"system":7803672,"atom":532137,"atom_used":524918,"binary":696984,"code":4358030,"ets":385192}
+
+#### To Develop
+
+        
+

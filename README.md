@@ -60,6 +60,22 @@ This is an application that exposes folsom metrics via http using webmachine.
         It only runs the Query Erlang VM metrics, stats and information listed below automatically. 
         This is to show that you at least have a working setup.
 
+#### To Generaate an Erlang OTP Release
+        run ./rebar -v generate or Make release
+        If you want to package this as an Erlang OTP release application.
+        sanity_test.sh is also copied to the package bin.
+        All the release package configuration details in rel/reltool.config
+        Release is generated under rel/folsom_webmachine, with the Erlang runtime and project depencies library in.
+        Erlang Release only responsible for Erlang app but not the external depedencies for example those C lib.
+        That means you can just zipped thie folder and deployed to a clean machine (provided you have all the c lib, that they need)
+        There is no need to install erlang runtime o target system as that is already embedded inside the release.
+        
+        Note there is no appup configuration and related logic, so no hot code swap at the momemt.
+        
+        Look at rel/files/folsom_webmachine to see the details:
+        Sample usage
+        To start a running release Use folsom_webmachine start 
+        To attach a running folsom_webmachine node. Use folsom_webmachine attach. 
 
 #### api
 

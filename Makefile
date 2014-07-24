@@ -6,7 +6,7 @@ ERL = $(shell which erl)
 
 ERLFLAGS= -pa $(CURDIR)/.eunit -pa $(CURDIR)/ebin -pa $(CURDIR)/*/ebin -pa $(CURDIR)/deps/*/deps/ebin
 
-ERLC_OPTS= +debug_info +fail_on_warning 
+ERLC_OPTS= +debug_info +fail_on_warning -smp 
 
 EDOC_OPTS= '{private, true}' '{hidden, true}' '{todo, true}'
 

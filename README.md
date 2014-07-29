@@ -58,6 +58,9 @@ This is an application that exposes folsom metrics via http using webmachine.
 #### Sanity Test
         run sanity_test.sh
         It only runs the Query Erlang VM metrics, stats and information listed below automatically. 
+        Included are tests for:
+        1) Quering a local erlang node 
+        2) Querying a reachable erlang node with node specified in  query string
         This is to show that you at least have a working setup.
 
 #### To Generaate an Erlang OTP Release
@@ -102,14 +105,28 @@ Delete a metric:
 Query Erlang VM metrics:
 
         $ curl http://localhost:5565/_memory
+        
+Query a reachable erlang node folsom_webmachine@127.0.0.1 Erlang VM metrics:
+
+        $ curl http://localhost:5565/_memory?node=folsom_webmachine@127.0.0.1
 
 Query Erlang VM stats:
 
         $ curl http://localhost:5565/_statistics
 
+Query a reachable erlang node folsom_webmachine@127.0.0.1 Erlang VM stats:
+
+        $ curl http://localhost:5565/_statistics?node=folsom_webmachine@127.0.0.1
+
 Query Erlang VM information:
 
         $ curl http://localhost:5565/_system
+
+Query a reachable erlang node folsom_webmachine@127.0.0.1 Erlang VM information:
+
+        $ curl http://localhost:5565/_system?node=folsom_webmachine@127.0.0.1
+
+
 
 #### output
 

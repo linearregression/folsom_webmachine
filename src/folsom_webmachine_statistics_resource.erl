@@ -38,4 +38,11 @@ allowed_methods(ReqData, Context) ->
     {['GET'], ReqData, Context}.
 
 to_json(ReqData, Context) ->
-    {mochijson2:encode(folsom_vm_metrics:get_statistics()), ReqData, Context}.
+    Node = get_node(ReqData), 
+    Ret = folsom_vm_metrics:get_statistics(Node),
+    {mochijson2:encode(folsom_vm_metrics:get_statistics(Node)), ReqData, Context}.
+
+get_node(ReqData)->
+    %This function contains newer OTP-R17 function   
+    Node = wrq:get_qs_value("node", atom_to_list(node()),ReqData), 
+    list_to_atom(Node).

@@ -1,7 +1,8 @@
 #! /usr/bin/env sh
 echo on
-set -e
-export ERLANG_NODE=folsom_webmachine
+set -e 
+# Added querying a reachable erlang node now. Erlang node named using longname format
+export ERLANG_NODE=folsom_webmachine@127.0.0.1 
 
 # make sure node not already running and node name unregistered
 check_start()
@@ -26,4 +27,4 @@ check_start()
 
 check_start()
 sleep 1
-erl -pa ebin deps/*/ebin -sname ${ERLANG_NODE} -s folsom_webmachine
+erl -pa ebin deps/*/ebin -name ${ERLANG_NODE} -s folsom_webmachine
